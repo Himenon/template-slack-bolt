@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  operator:
+    image: ghcr.io/himenon/template-slack-bolt:${VERSION}
+    environment:
+      TZ: "Asia/Tokyo"
+    env_file:
+      - .env.production
