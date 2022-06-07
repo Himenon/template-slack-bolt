@@ -1,4 +1,30 @@
-# @himenon/template-esm-js
+# @himenon/template-slack-bolt
+
+## Development
+
+**Install**
+
+```bash
+pnpm install
+```
+
+**Watch**
+
+```bash
+pnpm watch
+```
+
+**Build**
+
+```bash
+pnpm build
+```
+
+**Build Docker Image**
+
+```bash
+pnpm build:docker
+```
 
 ## Release
 
@@ -6,4 +32,4 @@
 
 ## LICENCE
 
-[@Himenon/template-esm-js](https://github.com/Himenon/template-esm-js)・MIT
+[@himenon/template-slack-bolt](https://github.com/Himenon/template-slack-bolt)・MIT

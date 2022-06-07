@@ -1,1 +1,1 @@
-export const VERSION = process.env.APP_VERSION as string;
+export const VERSION = process.env.APP_VERSION || "development";
