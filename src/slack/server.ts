@@ -2,7 +2,7 @@ import type { AppOptions } from "@slack/bolt";
 import SlackBolt from "@slack/bolt/dist/App";
 
 import { App } from "../app/index";
-import { VERSION } from "../version";
+import { VERSION } from "../config/version";
 
 export class Server {
   private app = new App();
@@ -12,8 +12,9 @@ export class Server {
       socketMode: true,
       token: process.env.SLACK_BOT_TOKEN,
       appToken: process.env.SLACK_APP_TOKEN,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      logLevel: "debug"
+      // logLevel: "debug"
       // logLevel: LogLevel.DEBUG,
     };
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

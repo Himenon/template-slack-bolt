@@ -1,25 +1,10 @@
 import type * as slack from "@slack/bolt";
 
-export interface NextPayload {
-  message: string;
-}
-
-export type NextFn = slack.SayFn;
-
-export interface ListenPayload {
-  message: string;
-  thread_ts: string;
-}
-
-export interface Subscriber {
-  run: (payload: ListenPayload, callback: NextFn) => Promise<void>;
-}
-
 export interface SlackPayload {
   message: string;
   thread_ts?: string;
   say: slack.SayFn;
-  updateReaction: (params: { delete?: string[]; add?: string[] }) => Promise<any>;
+  updateReaction: (params: { delete?: string[]; add?: string[] }) => Promise<unknown>;
 }
 
 export interface Payload<Key extends string = string> {

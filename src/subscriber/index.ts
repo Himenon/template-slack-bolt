@@ -1,5 +1,5 @@
+import { VERSION } from "../config/version";
 import type * as Types from "../types/subscriber";
-import { VERSION } from "../version";
 
 export const ping: Types.Callback = async payload => {
   const { slack } = payload;

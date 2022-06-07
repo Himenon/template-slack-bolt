@@ -1,43 +1,48 @@
 import { Parser } from "@himenon/message-command-parser";
 import { EventEmitter } from "events";
 
+import * as CommandConfig from "../config/command";
 import * as Subscriber from "../subscriber";
-import type { Payload, SlackPayload } from "../types/subscriber";
-import * as Config from "./message-config";
+import type { Callback, Payload, SlackPayload } from "../types/subscriber";
 
 export class App {
   private messageParser: Parser;
   private emitter = new EventEmitter();
   constructor() {
     this.messageParser = new Parser({
-      messageItems: Config.MessageItems,
+      messageItems: CommandConfig.MessageItems,
     });
     this.initialize();
   }
 
   private initialize() {
-    this.on(Config.Ping.command, Subscriber.ping);
-    this.on(Config.Version.command, Subscriber.version);
+    this.on(CommandConfig.Ping.command, Subscriber.ping);
+    this.on(CommandConfig.Version.command, Subscriber.version);
   }
 
-  private on = (command: string, callback: (payload: Payload) => Promise<void>) => {
-    this.emitter.on(command, async (payload: Payload) => {
-      // await payload.slack.updateReaction({
-      //   add: ["think_loading"],
-      // });
-      let success: boolean;
+  private on = (command: string, callback: Callback) => {
+    const run = async (payload: Payload) => {
       try {
         await callback(payload);
-        success = true;
+        return { error: undefined };
       } catch (error) {
         await payload.slack.say((error as Error).message);
         console.error(error);
-        success = false;
+        return { error: error };
       }
-      // await payload.slack.updateReaction({
-      //   add: success ? ["done"] : ["fail"],
-      //   delete: ["think_loading"],
-      // });
+    };
+    this.emitter.on(command, async (payload: Payload) => {
+      await payload.slack.updateReaction({
+        add: ["hourglass_flowing_sand"],
+      });
+      const { error } = await run(payload);
+      if (error) {
+        console.error(error);
+      }
+      await payload.slack.updateReaction({
+        add: error ? ["no_entry_sign"] : ["white_check_mark"],
+        delete: ["hourglass_flowing_sand"],
+      });
     });
   };
 
