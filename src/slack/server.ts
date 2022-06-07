@@ -71,4 +71,9 @@ export class Server {
     console.log("⚡️ Bolt app is running!");
     console.log(`⚡️ Bot Version: ${VERSION}`);
   }
+
+  public async close(): Promise<void> {
+    console.log("⚡️ Bolt app is stop!");
+    await this.slackApp.stop();
+  }
 }

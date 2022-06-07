@@ -23,7 +23,16 @@ pnpm build
 **Build Docker Image**
 
 ```bash
-pnpm build:docker
+docker build . -t ghcr.io/himenon/template-slack-bolt:local
+```
+
+**Docker Run**
+
+```bash
+docker run --rm --env-file=.env.production ghcr.io/himenon/template-slack-bolt:local
+
+# Daemon
+docker run --rm --env-file=.env.production -d ghcr.io/himenon/template-slack-bolt:local
 ```
 
 ## Release
