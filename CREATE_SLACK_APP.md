@@ -18,13 +18,12 @@ SLACK_BOT_TOKEN=xoxb-****
 
 ## Activate Socket Mode: Generate App Token
 
-* https://api.slack.com/apis/connections/socket#token
-
+- https://api.slack.com/apis/connections/socket#token
 
 1. [**Settings > Basic Information > App-Level Tokens**]
-    * ![](images/05.png)
-    * ![](images/06.png)
-    * ![](images/07.png)
+   - ![](images/05.png)
+   - ![](images/06.png)
+   - ![](images/07.png)
 
 Get `SLACK_APP_TOKEN`:
 
@@ -38,14 +37,12 @@ Enable Socket Mode
 
 ![](images/08.png)
 
-
 ## Pssssss
 
 1. [**Features > Event Subscription**]
    ![](images/09.png)
 2. **Subscribe to bot events** `app_mentions`
    ![](images/10.png)
-
 
 ## App Manifest
 
