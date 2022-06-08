@@ -35,12 +35,20 @@ docker build . -t ghcr.io/himenon/template-slack-bolt:local
 
 ```bash
 docker run --rm --env-file=.env.production ghcr.io/himenon/template-slack-bolt:local
+docker compose up
 
-# Daemon
+# Deamon
 docker run --rm --env-file=.env.production -d ghcr.io/himenon/template-slack-bolt:local
+docker compose up -d
 ```
 
 ### Environment File
+
+`.env`
+
+```
+VERSION=1.0.1
+```
 
 `.env.production`
 
