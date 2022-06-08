@@ -23,22 +23,16 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "node": "./dist/index.cjs",
-      "default": "./dist/index.js"
-    },
     "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "directories": {
-    "dist": "dist"
+    "dist": "dist-server"
   },
   "files": [
-    "dist",
+    "dist-server",
     "package.json",
     "README.md"
   ],
@@ -47,7 +41,6 @@
     "develop": "pnpm run ts:esm ./src/entry.ts",
     "build": "webpack",
     "watch": "nodemon",
-    "clean": "pnpm ts ./scripts/clean.ts",
     "format": "run-s prettier:format eslint:format",
     "test": "run-p test:vitest eslint:validate prettier:validate",
     "prettier:format": "prettier \"**/*.{js,jsx,ts,tsx,json,yml,yaml,md,html}\" --write ./src",
