@@ -1,4 +1,8 @@
-## Create Slack App
+## App Manifest (From an app manifest)
+
+![app.yaml](./app.yaml)
+
+## Create Slack App (From scratch)
 
 1. [Go to Slack API](https://api.slack.com/)
 2. [Create an app](https://api.slack.com/apps?new_app=1): Open Your Apps
@@ -43,29 +47,3 @@ Enable Socket Mode
    ![](images/09.png)
 2. **Subscribe to bot events** `app_mentions`
    ![](images/10.png)
-
-## App Manifest
-
-```yaml
-display_information:
-  name: botName
-features:
-  bot_user:
-    display_name: botName
-    always_online: false
-oauth_config:
-  scopes:
-    bot:
-      - app_mentions:read
-      - chat:write
-      - reactions:write
-settings:
-  event_subscriptions:
-    bot_events:
-      - app_mention
-  interactivity:
-    is_enabled: true
-  org_deploy_enabled: false
-  socket_mode_enabled: true
-  token_rotation_enabled: false
-```
