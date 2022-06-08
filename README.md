@@ -2,6 +2,8 @@
 
 ## Development
 
+- [Set Slack App](./SETUP_SLACK_APP.md)
+
 **Install**
 
 ```bash
@@ -33,6 +35,15 @@ docker run --rm --env-file=.env.production ghcr.io/himenon/template-slack-bolt:l
 
 # Daemon
 docker run --rm --env-file=.env.production -d ghcr.io/himenon/template-slack-bolt:local
+```
+
+### Environment File
+
+`.env.production`
+
+```
+SLACK_APP_TOKEN=xapp-****
+SLACK_BOT_TOKEN=xoxb-****
 ```
 
 ## Release
