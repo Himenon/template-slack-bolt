@@ -25,7 +25,7 @@ export class Server {
 
   /**
    * SlackのEvent
-   * https://api.slack.com/events
+   * @see https://api.slack.com/events
    */
   public async initialize() {
     this.slackApp.message("*", async payload => {
@@ -35,25 +35,22 @@ export class Server {
     this.slackApp.event("app_mention", async args => {
       const { payload, say, client } = args;
       console.log(`Receive: ${payload.text}`);
-
       const updateReaction = async (params: { delete?: string[]; add?: string[] }): Promise<any> => {
-        const deleteList: string[] = params.delete || [];
-        const addList: string[] = params.add || [];
-        const list1 = addList.map(name => {
+        const addTasks = (params.add || []).map(name => {
           return client.reactions.add({
             channel: payload.channel,
             name: name,
             timestamp: payload.ts,
           });
         });
-        const list2 = deleteList.map(name => {
+        const deleteTasks = (params.delete || []).map(name => {
           return client.reactions.remove({
             channel: payload.channel,
             name: name,
             timestamp: payload.ts,
           });
         });
-        return await Promise.all([...list1, ...list2]);
+        return await Promise.all([...addTasks, ...deleteTasks]);
       };
 
       this.app.emit({
