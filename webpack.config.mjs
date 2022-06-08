@@ -1,8 +1,5 @@
-import fs from "fs";
 import path from "path";
 import webpack from "webpack";
-
-const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
 
 /**
  * for esm
@@ -36,7 +33,7 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.APP_VERSION": JSON.stringify(pkg.version),
+      "process.env.APP_VERSION": JSON.stringify(process.env.APP_ENV || "dev"),
       "process.env.BUILD": JSON.stringify("webpack"),
     }),
   ],
