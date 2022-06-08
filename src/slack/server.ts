@@ -35,7 +35,7 @@ export class Server {
     this.slackApp.event("app_mention", async args => {
       const { payload, say, client } = args;
       console.log(`Receive: ${payload.text}`);
-      const updateReaction = async (params: { delete?: string[]; add?: string[] }): Promise<any> => {
+      const updateReaction = async (params: { delete?: string[]; add?: string[] }): Promise<void> => {
         const addTasks = (params.add || []).map(name => {
           return client.reactions.add({
             channel: payload.channel,
@@ -50,7 +50,7 @@ export class Server {
             timestamp: payload.ts,
           });
         });
-        return await Promise.all([...addTasks, ...deleteTasks]);
+        await Promise.all([...addTasks, ...deleteTasks]);
       };
 
       this.app.emit({
