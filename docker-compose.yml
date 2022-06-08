@@ -6,3 +6,4 @@ services:
       TZ: "Asia/Tokyo"
     env_file:
       - .env.production
+    restart: always
